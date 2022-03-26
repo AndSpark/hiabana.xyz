@@ -1,8 +1,9 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-	props: ['fetchData'],
+	props: ['fetchData', 'asyncData'],
 	setup(props, ctx) {
-		return () => <div>{props.fetchData.data}</div>
+		console.log(props)
+		return () => <div class='text-lg'>{props.fetchData.data}</div>
 	}
 })
