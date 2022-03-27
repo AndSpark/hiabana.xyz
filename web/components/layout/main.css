@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+	font-family: 'Hibana 45 SubMedium';
+	src: url('../../../public/Hibana-45SubMedium.woff2') format('woff2');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+html {
+	font-family: 'Hibana 45 SubMedium';
+}
+
+body {
+	@apply text-gray-700 dark:text-slate-300;
+}
+
+.block-bg {
+	@apply py-2 m-2  shadow-lg rounded bg-indigo-50  bg-opacity-30 dark:bg-black dark:bg-opacity-10 dark:shadow-slate-800 duration-500;
+}
