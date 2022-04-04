@@ -21,3 +21,18 @@ body {
 .block-bg {
 	@apply py-2 m-2  shadow-lg rounded bg-indigo-50  bg-opacity-30 dark:bg-black dark:bg-opacity-10 dark:shadow-slate-800 duration-500;
 }
+::-webkit-scrollbar {
+	width: 4px;
+	height: 8px;
+}
+::-webkit-scrollbar-thumb {
+	border-radius: 4px;
+}
+::-webkit-scrollbar-track-piece {
+	background: transparent;
+}
+::selection {
+	background: #344449;
+	color: #fff;
+	text-shadow: none;
+}

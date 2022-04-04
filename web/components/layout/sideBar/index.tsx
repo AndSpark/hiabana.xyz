@@ -11,28 +11,51 @@ export default defineComponent({
 		const socialList = [
 			{
 				href: 'https://hibana.xyz',
-				icon: 'uil uil-link'
+				icon: 'iconfont icon-link'
 			},
 			{
 				href: 'https://github.com/AndSpark',
-				icon: 'uil uil-github'
+				icon: 'iconfont icon-github'
 			},
 			{
 				href: 'mailto:421786477@qq.com',
-				icon: 'uil uil-envelope-add'
+				icon: 'iconfont icon-email'
 			}
+		]
+
+		const links = [
+			{
+				to: '/',
+				title: '主页'
+			},
+			{
+				to: '/',
+				title: '关于我'
+			},
+			{
+				to: '/',
+				title: '随便写写'
+			},
+			{
+				to: '/',
+				title: 'Timeline'
+			}
+		]
+
+		const border = [
+			'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/251110/b8da510860b38f1b5353b300c8c95c3b56df26e2.png',
+			'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/1069740/85030942387d8c7803922f84c31e82bc42728279.png'
 		]
 
 		return () => (
 			<div class=' h-full '>
-				<div class='text-center block-bg p-2'>
-					<video
-						class=' w-32 h-32 rounded-full mx-auto'
-						autoplay
-						loop
-						muted
-						src='https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/1299120/23f42ff297783336a9f9afaa318a895639005fcf.webm'
-					></video>
+				<div class='text-center block-bg p-2 relative'>
+					<img class='absolute w-40 h-40 ml-2 -mt-2 z-10' src={border[0]}></img>
+					<img
+						class=' w-32 h-32  mx-auto my-2 dark:opacity-80'
+						src='https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/1299120/cdce65b4fd94133a12faaf6d43653d1939d2e560.gif'
+					></img>
+
 					<p>Gols</p>
 					<p>
 						<a
@@ -55,10 +78,11 @@ export default defineComponent({
 				<div class='block-bg '>
 					<h3 class='text-sm my-2 px-4 text-gray-500'>导航</h3>
 					<div>
-						<p class='sidebar-link'>主页</p>
-						<p class='sidebar-link'>关于我</p>
-						<p class='sidebar-link'>随便写写</p>
-						<p class='sidebar-link'>TimeLine</p>
+						{links.map(v => (
+							<router-link class='sidebar-link' to={v.to}>
+								{v.title}
+							</router-link>
+						))}
 					</div>
 				</div>
 			</div>

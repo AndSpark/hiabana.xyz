@@ -12,7 +12,7 @@
       <title>Serverless Side Render for Vue3</title>
       <link
         rel="stylesheet"
-        href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+        href="//at.alicdn.com/t/font_3300135_k46v8c8o4gi.css"
       />
       <slot name="viteClient" />
       <!-- 初始化移动端 rem 设置，如不需要可自行删除 -->

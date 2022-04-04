@@ -26,8 +26,8 @@ const darkMode = defineComponent({
 		return () => (
 			<i
 				class={
-					'uil cursor-pointer dark:text-slate-50 duration-500 ' +
-					(isDarkMode.value ? 'uil-moon' : ' uil-sun')
+					'iconfont cursor-pointer dark:text-slate-50 duration-500 ' +
+					(isDarkMode.value ? 'icon-moon' : ' icon-sun')
 				}
 				onClick={changeMode}
 			></i>

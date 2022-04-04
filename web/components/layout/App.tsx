@@ -1,32 +1,9 @@
 import { defineComponent, onMounted, provide, ref } from 'vue'
 import topBar from './topBar/index'
 import sideBar from './sideBar/index'
+import { Errors } from '../errors'
 import './main.css'
 import { message } from '@andspark/vue-message'
-
-const userInfo = () => {
-	return (
-		<div class=' h-52 overflow-hidden p-4 flex w-full '>
-			<div class='flex'>
-				<div>
-					<video
-						class=' w-36 h-36 rounded-full'
-						autoplay
-						loop
-						muted
-						src='https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/1299120/23f42ff297783336a9f9afaa318a895639005fcf.webm'
-					></video>
-				</div>
-				<div class='ml-8'>
-					<p class='mt-4 text-sm text-gray-400'>这里是</p>
-					<p class='text-4xl text-zinc-900  dark:text-slate-100 duration-500'>Hibana</p>
-					<p></p>
-				</div>
-			</div>
-			<div></div>
-		</div>
-	)
-}
 
 export default defineComponent({
 	name: 'Layout',
@@ -42,6 +19,7 @@ export default defineComponent({
 			'https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/1406990/915b1b4a05133186525a956d7ca5c142a3c3c9f3.webm'
 		]
 		const pureDark = [
+			'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/504400/e7399d9e8ee71fcd22c92e59c37b93bfdf3589ac.webm',
 			'https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/1504020/a0f84c0cca796d6d011cb5b9f5033a0bc9071c50.webm',
 			'https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/1299120/7b165fc05e754dfdc31740025d6a55101db8b4b1.webm',
 			'https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/1504020/0ed598ef1ce172de4ff2033632a012ed5ecb10e9.webm',
@@ -74,12 +52,12 @@ export default defineComponent({
 
 		return () => (
 			<div class='relative overflow-auto bg-black '>
-				<video ref={videoBg} class={videoClass.value} autoplay loop muted src={normal[0]}></video>
+				<video ref={videoBg} class={videoClass.value} autoplay loop muted src={pureDark[0]}></video>
 				<div class='relative max-w-5xl mx-auto flex flex-col h-screen backdrop-blur-sm bg-slate-300 bg-opacity-90 dark:bg-slate-900  dark:bg-opacity-80 duration-500  shadow-slate-300 shadow-2xl'>
 					<topBar></topBar>
 					<div class='flex w-full flex-1 overflow-auto'>
-						<sideBar class='w-52 flex-shrink-0'></sideBar>
-						<router-view class='flex-1' />
+						<sideBar class='w-52 sm:block flex-shrink-0 hidden'></sideBar>
+						<router-view class='flex-1 h-full overflow-auto' />
 					</div>
 				</div>
 			</div>
