@@ -19,10 +19,14 @@ export class ApiService {
 				res.end()
 			})
 		} catch (error) {
-			if (error.message.includes('search component failed')) {
-				res.redirect('/404')
+			console.log(error)
+			if (req.url.includes('/error?code=500')) {
+				res.status(500).send(error)
+			} else if (error.message.includes('search component failed')) {
+				res.redirect('/error?code=404')
+			} else {
+				res.redirect('/error?code=500&msg=' + error.message)
 			}
-			res.status(500).send(error)
 		}
 	}
 }

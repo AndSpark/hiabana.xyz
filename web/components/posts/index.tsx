@@ -1,6 +1,5 @@
 import { PaginateResult, PostModel } from '@mx-space/api-client'
 import { parseDate } from '@/utils/time'
-import { reactive } from 'vue'
 export const PostListItem = (props: { post: PostModel }) => {
 	const { post } = props
 	return (

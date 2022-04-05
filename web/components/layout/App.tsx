@@ -1,9 +1,10 @@
 import { defineComponent, onMounted, provide, ref } from 'vue'
 import topBar from './topBar/index'
 import sideBar from './sideBar/index'
-import { Errors } from '../errors'
 import './main.css'
 import { message } from '@andspark/vue-message'
+import { useRoute } from 'vue-router'
+import usePlugins from '@/plugins'
 
 export default defineComponent({
 	name: 'Layout',
@@ -13,6 +14,8 @@ export default defineComponent({
 	},
 	props: ['fetchData', 'asyncData'],
 	setup(props) {
+		usePlugins()
+
 		provide('fetchData', props.fetchData)
 		provide('asyncData', props.asyncData)
 		const normal = [
@@ -31,28 +34,35 @@ export default defineComponent({
 			'https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/1385730/577d864a2cc8e45659772d09698c1d60621f5d0d.webm'
 		]
 		const videoBg = ref<HTMLVideoElement>()
-		const videoClass = ref('fixed left-1/2 transform -translate-x-1/2 dark:opacity-50 duration-500')
-
+		const videoBaseClass = 'fixed left-1/2 transform -translate-x-1/2 dark:opacity-50 duration-500'
+		const videoClass = ref(videoBaseClass)
+		const route = useRoute()
 		onMounted(() => {
-			message.success('欢迎来到Hibana～')
+			if (route.path.match(/^\/error/)) {
+				message.error('出错辣！')
+			} else {
+				message.success('欢迎来到Hibana～')
+			}
 
 			videoBg.value!.onloadeddata = function () {
-				if (window.innerWidth < videoBg.value!.videoWidth || 1920) {
-					videoClass.value += ' h-screen'
+				if (window.innerWidth > (videoBg.value!.videoWidth || 1920)) {
+					videoClass.value = videoBaseClass + ' h-screen'
 				} else {
-					videoClass.value += ' max-w-min'
+					videoClass.value = videoBaseClass + ' max-w-min'
 				}
 			}
-			if (window.innerWidth < videoBg.value!.videoWidth || 1920) {
-				videoClass.value += ' h-screen'
-			} else {
-				videoClass.value += ' max-w-min'
-			}
+			window.addEventListener('resize', () => {
+				if (window.innerWidth > (videoBg.value!.videoWidth || 1920)) {
+					videoClass.value = videoBaseClass + ' h-screen'
+				} else {
+					videoClass.value = videoBaseClass + ' max-w-min'
+				}
+			})
 		})
 
 		return () => (
 			<div class='relative overflow-auto bg-black '>
-				<video ref={videoBg} class={videoClass.value} autoplay loop muted src={pureDark[0]}></video>
+				<video ref={videoBg} class={videoClass.value} autoplay loop muted src={pureDark[1]}></video>
 				<div class='relative max-w-5xl mx-auto flex flex-col h-screen backdrop-blur-sm bg-slate-300 bg-opacity-90 dark:bg-slate-900  dark:bg-opacity-80 duration-500  shadow-slate-300 shadow-2xl'>
 					<topBar></topBar>
 					<div class='flex w-full flex-1 overflow-auto'>

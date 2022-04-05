@@ -5,6 +5,8 @@
 	"dependencies": {
 		"@andspark/axios": "^1.0.1",
 		"@andspark/vue-message": "^1.0.4",
+		"@bytemd/vue-next": "^1.13.0",
+		"@kangc/v-md-editor": "^2.3.15",
 		"@mx-space/api-client": "^0.8.1",
 		"@nestjs/common": "^8.0.0",
 		"@nestjs/config": "^2.0.0",
@@ -12,7 +14,9 @@
 		"@nestjs/platform-express": "^8.0.0",
 		"cross-env": "^7.0.0",
 		"dayjs": "^1.11.0",
+		"highlight.js": "^11.5.0",
 		"js-cookie": "^3.0.1",
+		"md-editor-v3": "^1.11.5",
 		"pm2": "^4.5.4",
 		"reflect-metadata": "^0.1.13",
 		"rxjs": "^7",
@@ -22,7 +26,8 @@
 		"swiper": "6.7.5",
 		"tailwindcss": "^3.0.23",
 		"vue": "^3.0.0",
-		"vue-router": "^4.0.0"
+		"vue-router": "^4.0.0",
+		"vue3-markdown-it": "^1.0.10"
 	},
 	"devDependencies": {
 		"@nestjs/cli": "^8.0.0",
