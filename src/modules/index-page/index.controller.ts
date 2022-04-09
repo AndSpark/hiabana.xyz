@@ -7,8 +7,12 @@ import { ApiService } from './index.service'
 export class AppController {
 	constructor(private readonly apiService: ApiService) {}
 
-	@Get(['/', '/post', '/post/:id'])
+	@Get(['/', '/post', '/post/:id', '/error'])
 	async handlerIndex(@Req() req: Request, @Res() res: Response): Promise<any> {
 		await this.apiService.render(req, res)
 	}
+
+	// @Get('*')
+	// @Redirect('/error?code=404')
+	// handle() {}
 }
