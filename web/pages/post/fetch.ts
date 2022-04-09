@@ -19,6 +19,5 @@ export default async ({ router }: Params, ctx?: ISSRNestContext) => {
 	}
 
 	const data = await apiClient.post.getList(Number(router.query.page || 1), PER_PAGE)
-	console.log(router)
 	return data
 }

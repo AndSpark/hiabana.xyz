@@ -3,15 +3,14 @@ import { parseDate } from '@/utils/time'
 export const PostListItem = (props: { post: PostModel }) => {
 	const { post } = props
 	return (
-		<router-link
-			to={`/post/${post.id}`}
-			class='block w-full mb-8  shadow-lg overflow-hidden border-slate-300 dark:border-slate-800 border rounded-lg duration-500'
-		>
+		<div class='block w-full mb-8  shadow-lg overflow-hidden border-slate-300 dark:border-slate-800 border rounded-lg duration-500'>
 			<div class='w-full'>
 				<img src={post.images?.[0]?.src}></img>
 			</div>
 			<div class='p-6'>
-				<h2 class='text-2xl'>{post.title}</h2>
+				<router-link to={`/post/${post.id}`} class='text-2xl'>
+					{post.title}
+				</router-link>
 				<div class='text-xs text-gray-500 dark:text-gray-400  my-4 flex w-full flex-nowrap'>
 					<p>
 						{parseDate(post.created, 'YYYY-MM-DD dddd') + ' ' + parseDate(post.created, 'HH:mm')}
@@ -29,7 +28,7 @@ export const PostListItem = (props: { post: PostModel }) => {
 					))}
 				</div>
 			</div>
-		</router-link>
+		</div>
 	)
 }
 

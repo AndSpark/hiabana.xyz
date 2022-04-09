@@ -1,8 +1,13 @@
-import { RouteLocationNormalizedLoaded } from 'vue-router'
-import { ISSRMidwayContext } from 'ssr-types'
+import { apiClient } from '@/utils/client'
 
-interface Params {
-	router: RouteLocationNormalizedLoaded
+export interface UserConfig {
+	avatar: string[]
+	avatarBorder: string[]
+	background: string[]
 }
 
-export default async ({ router }: Params, ctx?: ISSRMidwayContext) => {}
+export default async () => {
+	const data = await apiClient.snippet.getByReferenceAndName('root', 'userConfig')
+
+	return { userConfig: data }
+}

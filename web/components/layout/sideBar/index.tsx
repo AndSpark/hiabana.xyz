@@ -1,9 +1,8 @@
-import { defineComponent } from 'vue'
+import { UserConfig } from '../fetch'
+import { defineComponent, inject } from 'vue'
 import { steamIcon } from '../../icon'
 import './style.css'
 export default defineComponent({
-	props: {},
-	emits: [],
 	components: {
 		steamIcon
 	},
@@ -29,32 +28,24 @@ export default defineComponent({
 				title: '主页'
 			},
 			{
-				to: '/',
+				a: true,
+				to: 'https://music.hibana.xyz',
+				title: 'Music'
+			},
+			{
+				a: true,
+				to: 'https://cv.hibana.xyz',
 				title: '关于我'
-			},
-			{
-				to: '/',
-				title: '随便写写'
-			},
-			{
-				to: '/',
-				title: 'Timeline'
 			}
 		]
 
-		const border = [
-			'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/251110/b8da510860b38f1b5353b300c8c95c3b56df26e2.png',
-			'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/1069740/85030942387d8c7803922f84c31e82bc42728279.png'
-		]
+		const userConfig = inject<UserConfig>('userConfig')!
 
 		return () => (
 			<div class=' h-full '>
 				<div class='text-center block-bg p-2 relative'>
-					<img class='absolute w-40 h-40 ml-2 -mt-2 z-10' src={border[0]}></img>
-					<img
-						class=' w-32 h-32  mx-auto my-2 dark:opacity-80'
-						src='https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/1299120/cdce65b4fd94133a12faaf6d43653d1939d2e560.gif'
-					></img>
+					<img class='absolute w-40 h-40 ml-2 -mt-2 z-10' src={userConfig.avatarBorder[0]}></img>
+					<img class=' w-32 h-32  mx-auto my-2 dark:opacity-80' src={userConfig.avatar[0]}></img>
 
 					<p>Gols</p>
 					<p>
@@ -78,11 +69,17 @@ export default defineComponent({
 				<div class='block-bg '>
 					<h3 class='text-sm my-2 px-4 text-gray-500'>导航</h3>
 					<div>
-						{links.map(v => (
-							<router-link class='sidebar-link' to={v.to}>
-								{v.title}
-							</router-link>
-						))}
+						{links.map(v =>
+							!v.a ? (
+								<router-link class='sidebar-link' to={v.to}>
+									{v.title}
+								</router-link>
+							) : (
+								<a target='blank' class='sidebar-link' href={v.to}>
+									{v.title}
+								</a>
+							)
+						)}
 					</div>
 				</div>
 			</div>
