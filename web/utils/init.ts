@@ -1,4 +1,7 @@
 import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 export function initBg() {
 	const videoBg = ref<HTMLVideoElement>()
@@ -26,4 +29,16 @@ export function initBg() {
 		videoBaseClass,
 		videoClass
 	}
+}
+
+export function useNProgress() {
+	const router = useRouter()
+	NProgress.configure({ parent: '#topBar', showSpinner: false })
+
+	router.beforeEach(() => {
+		NProgress.start()
+	})
+	router.afterEach(() => {
+		NProgress.done()
+	})
 }

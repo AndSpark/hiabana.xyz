@@ -12,12 +12,12 @@ export default async ({ router }: Params, ctx?: ISSRNestContext) => {
 	try {
 		if (router.params.id) {
 			const data = await apiClient.post.getPost(router.params.id as string)
-			return data
+			return { post: data }
 		}
 	} catch (error) {
 		throw new Error('404')
 	}
 
 	const data = await apiClient.post.getList(Number(router.query.page || 1), PER_PAGE)
-	return data
+	return { posts: data }
 }

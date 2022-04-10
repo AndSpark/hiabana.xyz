@@ -41,7 +41,10 @@ export default defineComponent({
 	},
 	setup() {
 		return () => (
-			<div class=' h-10 mb-1 shadow dark:shadow-slate-700 bg-slate-300 dark:bg-slate-800 flex w-full items-center px-4 opacity-70 duration-500'>
+			<div
+				class=' h-10 mb-1 shadow dark:shadow-slate-700 bg-slate-300 dark:bg-slate-800 flex w-full items-center px-4 opacity-70 duration-500'
+				id='topBar'
+			>
 				<h2 class='dark:text-slate-50'>Hibana.xyz</h2>
 				<div class='flex-1'></div>
 				<darkMode></darkMode>

@@ -5,11 +5,11 @@ import { defineComponent, inject, reactive, ref } from 'vue'
 export default defineComponent({
 	name: 'post',
 	setup(props, ctx) {
-		const postRes = reactive(inject<PaginateResult<PostModel>>('fetchData')!)
+		const { posts } = reactive(inject<{ posts: PaginateResult<PostModel> }>('fetchData')!)
 
 		return () => (
 			<div class='px-4 h-full overflow-auto'>
-				<PostList postRes={postRes}></PostList>
+				<PostList postRes={posts}></PostList>
 			</div>
 		)
 	}

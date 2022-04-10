@@ -3,8 +3,8 @@ import { parseDate } from '@/utils/time'
 export const PostListItem = (props: { post: PostModel }) => {
 	const { post } = props
 	return (
-		<div class='block w-full mb-8  shadow-lg overflow-hidden border-slate-300 dark:border-slate-800 border rounded-lg duration-500'>
-			<div class='w-full'>
+		<div class='block w-full mb-8  shadow-lg overflow-hidden bg-slate-300 bg-opacity-60 dark:bg-slate-700 dark:bg-opacity-30 border-slate-300 dark:border-slate-800 border rounded-lg duration-500'>
+			<div class='w-full max-h-48 overflow-hidden relative'>
 				<img src={post.images?.[0]?.src}></img>
 			</div>
 			<div class='p-6'>
@@ -16,10 +16,6 @@ export const PostListItem = (props: { post: PostModel }) => {
 						{parseDate(post.created, 'YYYY-MM-DD dddd') + ' ' + parseDate(post.created, 'HH:mm')}
 					</p>
 					<div class='flex-1'></div>
-					{/* <p class='cursor-pointer'>
-						<i class='iconfont icon-like pr-1'></i>
-						<span>{post.count.like}</span>
-					</p> */}
 				</div>
 				<p class='text-sm'>{post.summary}</p>
 				<div class='mt-2'>
