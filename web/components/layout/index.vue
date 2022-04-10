@@ -9,7 +9,7 @@
         content="width=device-width, initial-scale=1, shrink-to-fit=no"
       />
       <meta name="theme-color" content="#000000" />
-      <title>Serverless Side Render for Vue3</title>
+      <title>Hibana</title>
       <link
         rel="stylesheet"
         href="//at.alicdn.com/t/font_3300135_k46v8c8o4gi.css"

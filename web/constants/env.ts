@@ -1,1 +1,1 @@
-export const API_URL = 'https://server.hibana.xyz/api/v2'
+export const API_URL = 'https://hibana.xyz/api/v2'
