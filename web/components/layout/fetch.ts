@@ -6,8 +6,13 @@ export interface UserConfig {
 	background: string[]
 }
 
-export default async () => {
-	const data = await apiClient.snippet.getByReferenceAndName('root', 'userConfig')
+let userConfig: any
 
-	return { userConfig: data }
+export default async () => {
+	if (userConfig) {
+		return { userConfig }
+	}
+	userConfig = await apiClient.snippet.getByReferenceAndName('root', 'userConfig')
+
+	return { userConfig }
 }

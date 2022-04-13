@@ -50,7 +50,7 @@ export default defineComponent({
 						<router-view
 							class='flex-1 h-full overflow-auto'
 							v-slots={{
-								default: ({ Component }) => (
+								default: ({ Component }: any) => (
 									<Transition name='slide-fade' mode='out-in'>
 										<Component></Component>
 									</Transition>
