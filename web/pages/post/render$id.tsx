@@ -22,6 +22,7 @@ export default defineComponent({
 
 			onUnmounted(() => {
 				observer.disconnect()
+				setSubtitle(post.title, false)
 			})
 		}
 

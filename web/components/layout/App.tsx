@@ -41,7 +41,7 @@ export default defineComponent({
 					autoplay
 					loop
 					muted
-					src={props.fetchData.userConfig.background[0]}
+					src={props.fetchData.userConfig?.background?.[0]}
 				></video>
 				<div class='relative max-w-5xl mx-auto flex flex-col h-screen backdrop-blur-sm bg-slate-300 bg-opacity-90 dark:bg-slate-900  dark:bg-opacity-80 duration-500  shadow-slate-300 shadow-2xl'>
 					<topBar></topBar>

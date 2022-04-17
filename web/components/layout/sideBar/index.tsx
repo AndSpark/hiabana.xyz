@@ -42,7 +42,7 @@ export default defineComponent({
 		const userConfig = inject<UserConfig>('userConfig')!
 
 		return () => (
-			<div class=' h-full '>
+			<div class=' h-full relative '>
 				<div class='text-center block-bg p-2 relative'>
 					<img class='absolute w-40 h-40 ml-2 -mt-2 z-10' src={userConfig.avatarBorder[0]}></img>
 					<img class=' w-32 h-32  mx-auto my-2 dark:opacity-80' src={userConfig.avatar[0]}></img>
@@ -82,6 +82,13 @@ export default defineComponent({
 						)}
 					</div>
 				</div>
+				<a
+					href='https://beian.miit.gov.cn/'
+					class=' absolute bottom-1 left-1/2 transform -translate-x-1/2 text-xs text-slate-500     whitespace-nowrap '
+					target='_blank'
+				>
+					浙ICP备2021018226号
+				</a>
 			</div>
 		)
 	}
