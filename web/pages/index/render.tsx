@@ -10,8 +10,9 @@ export default defineComponent({
 
 		return () => (
 			<div class='px-4 pt-2 h-full overflow-auto'>
-				<Welcome></Welcome>
-				<PostList postRes={posts}></PostList>
+				<PostList postRes={posts}>
+					<Welcome></Welcome>
+				</PostList>
 			</div>
 		)
 	}

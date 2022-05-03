@@ -26,6 +26,14 @@ export default defineComponent({
 			{
 				to: '/',
 				title: '主页'
+			}
+		]
+
+		const outLinks = [
+			{
+				a: true,
+				to: 'https://doc.hibana.xyz',
+				title: 'Lib'
 			},
 			{
 				a: true,
@@ -69,7 +77,17 @@ export default defineComponent({
 				<div class='block-bg '>
 					<h3 class='text-sm my-2 px-4 text-gray-500'>导航</h3>
 					<div>
-						{links.map(v =>
+						{links.map(v => (
+							<router-link class='sidebar-link' to={v.to}>
+								{v.title}
+							</router-link>
+						))}
+					</div>
+				</div>
+				<div class='block-bg'>
+					<h3 class='text-sm my-2 px-4 text-gray-500'>外链</h3>
+					<div>
+						{outLinks.map(v =>
 							!v.a ? (
 								<router-link class='sidebar-link' to={v.to}>
 									{v.title}

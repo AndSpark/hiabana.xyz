@@ -7,7 +7,7 @@ import { ApiService } from './index.service'
 export class AppController {
 	constructor(private readonly apiService: ApiService) {}
 
-	@Get(['/', '/post', '/post/:id', '/error'])
+	@Get(['/', '/post', '/post/:id', '/error', '/cv'])
 	async handlerIndex(@Req() req: Request, @Res() res: Response): Promise<any> {
 		await this.apiService.render(req, res)
 	}

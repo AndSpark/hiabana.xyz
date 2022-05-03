@@ -1,5 +1,6 @@
 import { PaginateResult, PostModel } from '@mx-space/api-client'
 import { parseDate } from '@/utils/time'
+import { useSlots, VNode } from 'vue'
 export const PostListItem = (props: { post: PostModel }) => {
 	const { post } = props
 	return (
@@ -31,8 +32,10 @@ export const PostListItem = (props: { post: PostModel }) => {
 export const PostList = (props: { postRes: PaginateResult<PostModel> }) => {
 	const { postRes } = props
 	const posts = postRes.data
+
 	return (
 		<div class='px-4 h-full overflow-auto'>
+			{useSlots().default?.()}
 			{posts.map(post => (
 				<PostListItem post={post} />
 			))}
