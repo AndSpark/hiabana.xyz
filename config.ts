@@ -9,7 +9,8 @@ const userConfig: UserConfig = {
 					options: {},
 					plugins: [require('postcss-import'), require('tailwindcss')]
 				}
-			}
+			},
+			requireModuleExtension: true
 		}
 	},
 	serverPort: 4444,

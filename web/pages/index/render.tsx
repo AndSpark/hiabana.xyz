@@ -11,7 +11,7 @@ export default defineComponent({
 		return () => (
 			<div class='px-4 pt-2 h-full overflow-auto'>
 				<PostList postRes={posts}>
-					<Welcome></Welcome>
+					<Welcome class='mb-4'></Welcome>
 				</PostList>
 			</div>
 		)

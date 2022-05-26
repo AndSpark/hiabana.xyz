@@ -9,7 +9,7 @@ export const PostListItem = (props: { post: PostModel }) => {
 				<img src={post.images?.[0]?.src}></img>
 			</div>
 			<div class='p-6'>
-				<router-link to={`/post/${post.id}`} class='text-2xl'>
+				<router-link to={`/post/${post.id}`} class='text-xl sm:text-2xl'>
 					{post.title}
 				</router-link>
 				<div class='text-xs text-gray-500 dark:text-gray-400  my-4 flex w-full flex-nowrap'>
