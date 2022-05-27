@@ -54,7 +54,7 @@ export default defineComponent({
 				class=' h-10 mb-1 relative  shadow dark:shadow-slate-700 bg-slate-300 dark:bg-slate-800 flex w-full items-center px-4 opacity-70 duration-500 overflow-hidden'
 				id='topBar'
 			>
-				<MenuIcon class='mr-2'></MenuIcon>
+				<MenuIcon class='mr-2 sm:hidden'></MenuIcon>
 				<h2 class='dark:text-slate-50'>
 					<router-link to='/'>Hibana.xyz</router-link>
 				</h2>

@@ -1,6 +1,6 @@
 import { defineComponent, onMounted, provide, Transition } from 'vue'
-import topBar from './topBar/index'
-import sideBar from './sideBar/index'
+import TopBar from './topBar/index'
+import SideBar from './sideBar/index'
 import './main.css'
 import { message } from '@andspark/vue-message'
 import { useRoute } from 'vue-router'
@@ -9,10 +9,6 @@ import { initBg, useNProgress } from '@/utils/init'
 
 export default defineComponent({
 	name: 'Layout',
-	components: {
-		topBar,
-		sideBar
-	},
 	props: ['fetchData', 'asyncData'],
 	setup(props) {
 		usePlugins()
@@ -43,12 +39,12 @@ export default defineComponent({
 					muted
 					src={props.fetchData.userConfig?.background?.[0]}
 				></video>
-				<div class='relative max-w-5xl mx-auto flex flex-col h-screen backdrop-blur-sm bg-slate-300 bg-opacity-90 dark:bg-slate-900  dark:bg-opacity-80 duration-500  shadow-slate-300 shadow-2xl'>
-					<topBar></topBar>
-					<div class='flex w-full flex-1 overflow-auto'>
-						<sideBar class='w-52 sm:block flex-shrink-0 hidden'></sideBar>
+				<div class='relative max-w-5xl mx-auto flex flex-col h-screen backdrop-blur-sm bg-slate-300 bg-opacity-90 dark:bg-slate-900  dark:bg-opacity-80   duration-500  shadow-slate-300 shadow-2xl'>
+					<TopBar></TopBar>
+					<div class=' relative  flex-1 overflow-auto'>
+						<SideBar class=' absolute w-52 sm:left-0  -left-52  flex-shrink-0  duration-500'></SideBar>
 						<router-view
-							class='flex-1 h-full overflow-auto'
+							class='absolute top-0 sm:left-52 w-full sm:w-[calc(100%-13rem)]  left-0 h-full overflow-auto'
 							v-slots={{
 								default: ({ Component }: any) => (
 									<Transition name='slide-fade' mode='out-in'>

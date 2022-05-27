@@ -20,7 +20,7 @@ body {
 }
 
 .block-bg {
-	@apply py-2 m-2  shadow-lg rounded bg-indigo-50  bg-opacity-30 dark:bg-black dark:bg-opacity-10 dark:shadow-slate-800 duration-500;
+	@apply py-2 m-2  shadow-lg rounded bg-indigo-50  bg-opacity-30 dark:bg-black dark:bg-opacity-10 dark:shadow-slate-900 duration-500;
 }
 ::-webkit-scrollbar {
 	width: 4px;
