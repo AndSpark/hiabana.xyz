@@ -1,7 +1,8 @@
 import { MenuIcon } from '@/components/icon/menu'
+import { useSideBar } from '@/hooks/useSideBar'
 import { defineComponent, ref } from 'vue'
 
-const darkMode = defineComponent({
+const DarkMode = defineComponent({
 	setup() {
 		const isDarkMode = ref(false)
 		if (__isBrowser__) {
@@ -45,21 +46,19 @@ export const setSubtitle = (title: string, show: boolean = true) => {
 }
 
 export default defineComponent({
-	components: {
-		darkMode
-	},
 	setup() {
+		const { toggleSideBar } = useSideBar()
 		return () => (
 			<div
 				class=' h-10 mb-1 relative  shadow dark:shadow-slate-700 bg-slate-300 dark:bg-slate-800 flex w-full items-center px-4 opacity-70 duration-500 overflow-hidden'
 				id='topBar'
 			>
-				<MenuIcon class='mr-2 sm:hidden'></MenuIcon>
+				<MenuIcon onMenuChange={toggleSideBar} class='mr-4 sm:hidden'></MenuIcon>
 				<h2 class='dark:text-slate-50'>
 					<router-link to='/'>Hibana.xyz</router-link>
 				</h2>
 				<div class='flex-1'></div>
-				<darkMode></darkMode>
+				<DarkMode></DarkMode>
 				<h3
 					class={
 						'hidden sm:block absolute  left-52  duration-1000 transform cursor-pointer dark:text-white overflow-hidden text-ellipsis whitespace-nowrap ' +

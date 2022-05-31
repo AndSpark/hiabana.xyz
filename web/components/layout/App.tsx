@@ -6,6 +6,7 @@ import { message } from '@andspark/vue-message'
 import { useRoute } from 'vue-router'
 import usePlugins from '@/plugins'
 import { initBg, useNProgress } from '@/utils/init'
+import { useSideBar } from '@/hooks/useSideBar'
 
 export default defineComponent({
 	name: 'Layout',
@@ -29,6 +30,8 @@ export default defineComponent({
 
 		const { videoBg, videoClass } = initBg()
 		useNProgress()
+		const { sideBarVisible } = useSideBar()
+
 		return () => (
 			<div class='relative overflow-auto bg-black '>
 				<video
@@ -42,7 +45,13 @@ export default defineComponent({
 				<div class='relative max-w-5xl mx-auto flex flex-col h-screen backdrop-blur-sm bg-slate-300 bg-opacity-90 dark:bg-slate-900  dark:bg-opacity-80   duration-500  shadow-slate-300 shadow-2xl'>
 					<TopBar></TopBar>
 					<div class=' relative  flex-1 overflow-auto'>
-						<SideBar class=' absolute w-52 sm:left-0  -left-52  flex-shrink-0  duration-500'></SideBar>
+						<SideBar
+							class={
+								' absolute overflow-auto w-52 sm:left-0  -left-52  flex-shrink-0  duration-500 ' +
+								(sideBarVisible.value &&
+									'transform translate-x-52 backdrop-blur shadow-sm bg-slate-300 dark:bg-slate-900 dark:bg-opacity-90 bg-opacity-20')
+							}
+						></SideBar>
 						<router-view
 							class='absolute top-0 sm:left-52 w-full sm:w-[calc(100%-13rem)]  left-0 h-full overflow-auto'
 							v-slots={{
