@@ -1,4 +1,4 @@
-import { defineComponent, onMounted, provide, Transition } from 'vue'
+import { defineComponent, onMounted, provide, ref, Transition } from 'vue'
 import TopBar from './topBar/index'
 import SideBar from './sideBar/index'
 import './main.css'
@@ -49,7 +49,7 @@ export default defineComponent({
 							class={
 								' absolute overflow-auto w-52 sm:left-0  -left-52  flex-shrink-0  duration-500 ' +
 								(sideBarVisible.value &&
-									'transform translate-x-52 backdrop-blur shadow-sm bg-slate-300 dark:bg-slate-900 dark:bg-opacity-90 bg-opacity-20')
+									'transform translate-x-52   shadow bg-slate-300 dark:bg-slate-800   ')
 							}
 						></SideBar>
 						<router-view

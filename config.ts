@@ -1,7 +1,7 @@
 import type { UserConfig } from 'ssr-types'
 
 const userConfig: UserConfig = {
-	whiteList: ['axios', '@mx-space/api-client', 'nprogress'],
+	whiteList: ['axios', '@mx-space/api-client', 'nprogress', '@vueuse/core'],
 	css: () => {
 		return {
 			loaderOptions: {
@@ -23,6 +23,14 @@ const userConfig: UserConfig = {
 			target: 'https://server.hibana.xyz/api/v2',
 			changeOrigin: true
 		}
+	},
+	chainBaseConfig: chain => {
+		chain.module
+			.rule('mjs$')
+			.test(/\.mjs$/)
+			.include.add(/node_modules/)
+			.end()
+			.type('javascript/auto')
 	}
 }
 

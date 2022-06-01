@@ -1,7 +1,9 @@
 import { UserConfig } from '../fetch'
-import { defineComponent, inject } from 'vue'
+import { defineComponent, inject, ref } from 'vue'
 import { steamIcon } from '../../icon'
+import { onClickOutside } from '@vueuse/core'
 import './style.css'
+import { useSideBar } from '@/hooks/useSideBar'
 export default defineComponent({
 	components: {
 		steamIcon
@@ -48,9 +50,16 @@ export default defineComponent({
 		]
 
 		const userConfig = inject<UserConfig>('userConfig')!
+		const sideBar = ref(null)
+		onClickOutside(sideBar, () => {
+			const { sideBarVisible } = useSideBar()
+			if (sideBarVisible.value) {
+				sideBarVisible.value = false
+			}
+		})
 
 		return () => (
-			<div class=' h-full relative  z-50  '>
+			<div class=' h-full relative  z-50 ' ref={sideBar}>
 				<div class='text-center block-bg p-2 relative'>
 					<img class='absolute w-40 h-40 ml-2 -mt-2 z-10' src={userConfig.avatarBorder[0]}></img>
 					<img class=' w-32 h-32  mx-auto my-2 dark:opacity-80' src={userConfig.avatar[0]}></img>
