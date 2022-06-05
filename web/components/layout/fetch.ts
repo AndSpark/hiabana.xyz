@@ -64,9 +64,6 @@ export default async () => {
 	}
 
 	try {
-		hitokoto = (await apiClient.instance.get('https://v1.hitokoto.cn/?c=a')).data as Hitokoto
-	} catch (error) {}
-	try {
 		userConfig = await apiClient.snippet.getByReferenceAndName('root', 'userConfig')
 		userConfigLoaded = true
 	} catch (error) {}
