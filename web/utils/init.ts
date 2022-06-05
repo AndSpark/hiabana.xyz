@@ -33,7 +33,7 @@ export function initBg() {
 
 export function useNProgress() {
 	const router = useRouter()
-	NProgress.configure({ parent: '#topBar', showSpinner: false })
+	NProgress.configure({ parent: '#app', showSpinner: false })
 
 	router.beforeEach(() => {
 		NProgress.start()

@@ -1,5 +1,5 @@
 import { MenuIcon } from '@/components/icon/menu'
-import { useSideBar } from '@/hooks/useSideBar'
+import { useSideBarVisible } from '@/hooks/useSideBar'
 import { defineComponent, ref } from 'vue'
 
 const DarkMode = defineComponent({
@@ -47,10 +47,10 @@ export const setSubtitle = (title: string, show: boolean = true) => {
 
 export default defineComponent({
 	setup() {
-		const { toggleSideBar } = useSideBar()
+		const { toggleSideBar } = useSideBarVisible()
 		return () => (
 			<div
-				class=' h-10 mb-1 relative  shadow dark:shadow-slate-700 bg-slate-300 dark:bg-slate-800 flex w-full items-center px-4 opacity-70 duration-500 overflow-hidden'
+				class=' h-10 fixed top-0 z-10  shadow dark:shadow-slate-700 bg-slate-300 dark:bg-slate-800 flex w-full items-center px-4  duration-500 overflow-hidden'
 				id='topBar'
 			>
 				<MenuIcon onMenuChange={toggleSideBar} class='mr-4 sm:hidden'></MenuIcon>

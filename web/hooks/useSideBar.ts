@@ -1,11 +1,11 @@
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
 const sideBarVisible = ref(false)
 
-export function useSideBar() {
+export function useSideBarVisible() {
 	return {
 		sideBarVisible,
-		toggleSideBar: () => {
+		toggleSideBar() {
 			sideBarVisible.value = !sideBarVisible.value
 		}
 	}

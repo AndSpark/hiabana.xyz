@@ -1,4 +1,4 @@
-import { useSideBar } from '@/hooks/useSideBar'
+import { useSideBarVisible } from '@/hooks/useSideBar'
 import { defineComponent, ref } from 'vue'
 
 const line = 'w-4 h-0.5 bg-gray-700 dark:bg-slate-300 rounded-lg duration-500 ease-in-out'
@@ -23,10 +23,11 @@ export const MenuIcon = defineComponent({
 		}
 	},
 	setup(props) {
-		const { sideBarVisible, toggleSideBar } = useSideBar()
+		const { sideBarVisible, toggleSideBar } = useSideBarVisible()
 
 		return () => (
 			<div
+				id='menuIcon'
 				class={'relative flex justify-center items-center w-6 h-6 cursor-pointer duration-500'}
 				onClick={toggleSideBar}
 			>
