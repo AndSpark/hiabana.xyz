@@ -5,6 +5,7 @@ import { onClickOutside } from '@vueuse/core'
 import './style.css'
 import { useSideBarVisible } from '@/hooks/useSideBar'
 import { useMask } from '@/hooks/useMask'
+import { useRoute } from 'vue-router'
 export default defineComponent({
 	components: {
 		steamIcon
@@ -53,6 +54,15 @@ export default defineComponent({
 		const userConfig = inject<UserConfig>('userConfig')!
 		const sideBar = ref<HTMLElement>()
 		const { sideBarVisible } = useSideBarVisible()
+		const route = useRoute()
+
+		function handleRouterLinkClick(path: string) {
+			if (path === route.path) {
+				return
+			}
+			sideBarVisible.value = false
+		}
+
 		onMounted(() => {
 			const { showMask, hideMask } = useMask(sideBar.value!)
 			watch(sideBarVisible, visible => {
@@ -100,7 +110,11 @@ export default defineComponent({
 					<h3 class='text-sm my-2 px-4 text-gray-500'>导航</h3>
 					<div>
 						{links.map(v => (
-							<router-link class='sidebar-link' to={v.to}>
+							<router-link
+								onClick={() => handleRouterLinkClick(v.to)}
+								class='sidebar-link'
+								to={v.to}
+							>
 								{v.title}
 							</router-link>
 						))}
