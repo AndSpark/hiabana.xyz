@@ -7,6 +7,7 @@ import { useRoute } from 'vue-router'
 import usePlugins from '@/plugins'
 import { initBg, useNProgress } from '@/utils/init'
 import { useSideBarVisible } from '@/hooks/useSideBar'
+import addPointer from '@/utils/pointer'
 
 export default defineComponent({
 	name: 'Layout',
@@ -21,6 +22,7 @@ export default defineComponent({
 		const route = useRoute()
 
 		onMounted(() => {
+			addPointer()
 			if (route.path.match(/^\/error/)) {
 				message.error('出错辣！')
 			} else {
@@ -29,8 +31,8 @@ export default defineComponent({
 		})
 
 		const { videoBg, videoClass } = initBg()
-		useNProgress()
 		const { sideBarVisible } = useSideBarVisible()
+		useNProgress()
 
 		return () => (
 			<div class='relative h-screen bg-black overflow-hidden   '>
