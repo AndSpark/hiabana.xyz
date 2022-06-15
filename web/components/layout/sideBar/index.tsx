@@ -30,6 +30,10 @@ export default defineComponent({
 			{
 				to: '/',
 				title: '主页'
+			},
+			{
+				to: '/message',
+				title: '留言板'
 			}
 		]
 
