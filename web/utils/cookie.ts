@@ -42,6 +42,7 @@ function getLikes() {
   return decodeURIComponent(Cookies.get(LikePrefix) ?? '')
 }
 
+
 export function isLikedBefore(id: string) {
   const has = getLikes()
 

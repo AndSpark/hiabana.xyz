@@ -1,4 +1,4 @@
-import { MenuIcon } from '@/components/icon/menu'
+import MenuIcon from '@/components/common/icons/menu'
 import { useSideBarVisible } from '@/hooks/useSideBar'
 import { defineComponent, ref } from 'vue'
 
@@ -46,14 +46,19 @@ export const setSubtitle = (title: string, show: boolean = true) => {
 }
 
 export default defineComponent({
+	name: 'topBar',
 	setup() {
-		const { toggleSideBar } = useSideBarVisible()
+		const { sideBarVisible, toggleSideBar } = useSideBarVisible()
 		return () => (
 			<div
 				class=' h-10 fixed top-0 z-10  shadow dark:shadow-slate-700 bg-slate-300 dark:bg-slate-800 flex w-full items-center px-4  duration-500 overflow-hidden'
 				id='topBar'
 			>
-				<MenuIcon onMenuChange={toggleSideBar} class='mr-4 sm:hidden'></MenuIcon>
+				<MenuIcon
+					setValue={toggleSideBar}
+					value={sideBarVisible.value}
+					class='mr-4 sm:hidden'
+				></MenuIcon>
 				<h2 class='dark:text-slate-50'>
 					<router-link to='/'>Hibana.xyz</router-link>
 				</h2>

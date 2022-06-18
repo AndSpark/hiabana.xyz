@@ -1,15 +1,11 @@
 import { UserConfig } from '../fetch'
 import { defineComponent, inject, onMounted, ref, watch } from 'vue'
-import { steamIcon } from '../../icon'
 import { onClickOutside } from '@vueuse/core'
 import './style.css'
 import { useSideBarVisible } from '@/hooks/useSideBar'
 import { useMask } from '@/hooks/useMask'
 import { useRoute } from 'vue-router'
 export default defineComponent({
-	components: {
-		steamIcon
-	},
 	setup(props, ctx) {
 		const socialList = [
 			{
