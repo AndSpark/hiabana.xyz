@@ -11,6 +11,7 @@
 		"noImplicitThis": true,
 		"noUnusedLocals": true,
 		"stripInternal": true,
+		"strictPropertyInitialization": false,
 		"pretty": true,
 		"declaration": false,
 		"strict": true,

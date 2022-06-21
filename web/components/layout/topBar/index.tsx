@@ -1,4 +1,4 @@
-import MenuIcon from '@/components/common/icons/menu'
+import MenuIcon from '@/components/common/Icons/Menu'
 import { useSideBarVisible } from '@/hooks/useSideBar'
 import { defineComponent, ref } from 'vue'
 
