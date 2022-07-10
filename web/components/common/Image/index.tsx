@@ -1,9 +1,4 @@
 import { defineComponent } from 'vue'
-class Abc {
-	name: string = '123'
-	age: number
-	title?: string
-}
 
 const Image = defineComponent({
 	props: {},
