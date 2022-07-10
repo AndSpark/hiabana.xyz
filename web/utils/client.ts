@@ -11,6 +11,9 @@ export const apiClient = createClient(axiosAdaptor)(API_URL, {
 
 export const $axios = axiosAdaptor.default
 
+// 防止服务端返回爬虫是禁止的
+$axios.defaults.headers['User-Agent'] = 'mx-space'
+
 $axios.defaults.timeout = 10000
 
 $axios.interceptors.request.use(config => {
