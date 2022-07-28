@@ -32,18 +32,16 @@ export default {
 	props: ['ctx', 'fetchData'],
 	data() {
 		return {
-			pathMap: {
-				'/': '首页',
-				'/detail': '详情页'
+			webConfig: {
+				title: 'Hibana-秘密基地',
+				description: '这是hibana的秘密基地,简单的一个博客。',
+				keyword: 'hibana,火花'
 			}
 		}
 	},
 	created() {
-		console.log(this.fetchData)
-	},
-	computed: {
-		webConfig() {
-			return this.fetchData['webConfig']
+		if (this.fetchData?.webConfig) {
+			this.webConfig = this.fetchData.webConfig
 		}
 	},
 	methods: {
