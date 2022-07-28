@@ -42,7 +42,12 @@ let userConfig: Record<string, any> = {
 		'https://hibana.oss-cn-shanghai.aliyuncs.com/resource/577d864a2cc8e45659772d09698c1d60621f5d0d.webm'
 	]
 }
-let userConfigLoaded = false
+let webConfig: Record<string, any> = {
+	title: 'Hibana-秘密基地',
+	description: '这是hibana的秘密基地,简单的一个博客。',
+	keyword: 'hibana,火花'
+}
+let configLoaded = false
 let hitokoto: Hitokoto = {
 	id: 5204,
 	uuid: '739cb56b-3e22-4dbe-b018-861acf248b2e',
@@ -59,14 +64,15 @@ let hitokoto: Hitokoto = {
 }
 
 export default async () => {
-	if (userConfigLoaded) {
+	if (configLoaded) {
 		return { userConfig }
 	}
 
 	try {
 		userConfig = await apiClient.snippet.getByReferenceAndName('root', 'userConfig')
-		userConfigLoaded = true
+		webConfig = await apiClient.snippet.getByReferenceAndName('root', 'webConfig')
+		configLoaded = true
 	} catch (error) {}
 
-	return { userConfig, hitokoto }
+	return { userConfig, hitokoto, webConfig }
 }

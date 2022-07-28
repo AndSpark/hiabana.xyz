@@ -1,7 +1,6 @@
 import { defineComponent } from 'vue'
 
 const Image = defineComponent({
-	props: {},
 	setup() {},
 	render() {
 		return <img></img>

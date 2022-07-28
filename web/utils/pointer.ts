@@ -22,7 +22,8 @@ const style = `
 	}
 
   #app button,
-  #app a {
+  #app a ,
+	#app i {
     cursor: url(${pointer1}), auto  ;
   }
 }
