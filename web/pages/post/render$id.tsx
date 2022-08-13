@@ -1,4 +1,4 @@
-import { setSubtitle } from '@/components/layout/topBar'
+import { setSubtitle } from '@/components/layout/Header'
 import { usePostProgress } from '@/utils/progress'
 import { parseDate } from '@/utils/time'
 import { PostModel } from '@mx-space/api-client'

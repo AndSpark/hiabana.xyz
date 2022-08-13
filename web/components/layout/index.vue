@@ -9,7 +9,7 @@
 			<title>{{ webConfig.title }}</title>
 			<meta name="description" :content="webConfig.description" />
 			<meta name="keyword" :content="webConfig.keyword" />
-			<link rel="stylesheet" href="//at.alicdn.com/t/font_3300135_k46v8c8o4gi.css" />
+			<link rel="stylesheet" href="//at.alicdn.com/t/c/font_3300135_40kdypgh3xt.css" />
 			<slot name="viteClient" />
 			<!-- 初始化移动端 rem 设置，如不需要可自行删除 -->
 			<!-- <slot name="remInitial" /> -->
