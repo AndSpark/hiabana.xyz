@@ -1,4 +1,6 @@
 import { apiClient } from '@/utils/client'
+import { PaginateResult, PageModel } from '@mx-space/api-client'
+import { AxiosResponse } from 'axios'
 export interface UserConfig {
 	avatar: string[]
 	avatarBorder: string[]
@@ -22,11 +24,11 @@ export interface Hitokoto {
 
 let userConfig: Record<string, any> = {
 	avatar: [
-		'https://hibana.oss-cn-shanghai.aliyuncs.com/resource/cdce65b4fd94133a12faaf6d43653d1939d2e560.gif'
+		'https://hibana.oss-cn-shanghai.aliyuncs.com/resource/cdce65b4fd94133a12faaf6d43653d1939d2e560.gif',
 	],
 	avatarBorder: [
 		'https://hibana.oss-cn-shanghai.aliyuncs.com/resource/b8da510860b38f1b5353b300c8c95c3b56df26e2.png',
-		'https://hibana.oss-cn-shanghai.aliyuncs.com/resource/85030942387d8c7803922f84c31e82bc42728279.png'
+		'https://hibana.oss-cn-shanghai.aliyuncs.com/resource/85030942387d8c7803922f84c31e82bc42728279.png',
 	],
 	background: [
 		'https://hibana.oss-cn-shanghai.aliyuncs.com/resource/e7399d9e8ee71fcd22c92e59c37b93bfdf3589ac.webm',
@@ -39,13 +41,13 @@ let userConfig: Record<string, any> = {
 		'https://hibana.oss-cn-shanghai.aliyuncs.com/resource/ca81c5733512be8fa25d90005646b85a61f61975.webm',
 		'https://hibana.oss-cn-shanghai.aliyuncs.com/resource/85687190436c55c94e02707531ddb12139b13ebd.webm',
 		'https://hibana.oss-cn-shanghai.aliyuncs.com/resource/cf4f9f82f579f3075f81718ca1aaed65478c7efa.webm',
-		'https://hibana.oss-cn-shanghai.aliyuncs.com/resource/577d864a2cc8e45659772d09698c1d60621f5d0d.webm'
-	]
+		'https://hibana.oss-cn-shanghai.aliyuncs.com/resource/577d864a2cc8e45659772d09698c1d60621f5d0d.webm',
+	],
 }
 let webConfig: Record<string, any> = {
 	title: 'Hibana-秘密基地',
 	description: '这是hibana的秘密基地,简单的一个博客。',
-	keyword: 'hibana,火花'
+	keyword: 'hibana,火花',
 }
 let configLoaded = false
 let hitokoto: Hitokoto = {
@@ -60,19 +62,23 @@ let hitokoto: Hitokoto = {
 	reviewer: 1044,
 	commit_from: 'app',
 	created_at: '1583290826',
-	length: 18
+	length: 18,
+}
+let pages: PaginateResult<PageModel> & {
+	$raw: AxiosResponse<unknown>
+	$request: { [k: string]: string; path: string; method: string }
 }
 
 export default async () => {
 	if (configLoaded) {
-		return { userConfig }
+		return { userConfig, webConfig, pages }
 	}
-
 	try {
 		userConfig = await apiClient.snippet.getByReferenceAndName('root', 'userConfig')
 		webConfig = await apiClient.snippet.getByReferenceAndName('root', 'webConfig')
+		pages = await apiClient.page.getList()
 		configLoaded = true
 	} catch (error) {}
 
-	return { userConfig, hitokoto, webConfig }
+	return { userConfig, hitokoto, webConfig, pages }
 }

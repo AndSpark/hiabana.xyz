@@ -5,50 +5,53 @@ import './style.css'
 import { useSideBarVisible } from '@/hooks/useSideBar'
 import { useMask } from '@/hooks/useMask'
 import { useRoute } from 'vue-router'
+import { PaginateResult, PageModel } from '@mx-space/api-client'
 export default defineComponent({
 	setup(props, ctx) {
+		const pages = inject<PaginateResult<PageModel>>('pages')!
+
 		const socialList = [
 			{
 				href: 'https://hibana.xyz',
-				icon: 'iconfont icon-link'
+				icon: 'iconfont icon-link',
 			},
 			{
 				href: 'https://github.com/AndSpark',
-				icon: 'iconfont icon-github'
+				icon: 'iconfont icon-github',
 			},
 			{
 				href: 'mailto:421786477@qq.com',
-				icon: 'iconfont icon-email'
-			}
+				icon: 'iconfont icon-email',
+			},
 		]
 
 		const links = [
 			{
 				to: '/',
-				title: '主页'
+				title: '主页',
 			},
-			{
-				to: '/message',
-				title: '留言板'
-			}
+			...pages.data.map(v => ({
+				to: '/page/' + v.slug,
+				title: v.title,
+			})),
 		]
 
 		const outLinks = [
 			{
 				a: true,
 				to: 'https://doc.hibana.xyz',
-				title: 'Lib'
+				title: 'Lib',
 			},
 			{
 				a: true,
 				to: 'https://music.hibana.xyz',
-				title: 'Music'
+				title: 'Music',
 			},
 			{
 				a: true,
 				to: 'https://cv.hibana.xyz',
-				title: '关于我'
-			}
+				title: '关于我',
+			},
 		]
 
 		const userConfig = inject<UserConfig>('userConfig')!
@@ -145,5 +148,5 @@ export default defineComponent({
 				</a>
 			</div>
 		)
-	}
+	},
 })

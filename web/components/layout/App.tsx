@@ -18,7 +18,7 @@ export default defineComponent({
 		provide('fetchData', props.fetchData)
 		provide('asyncData', props.asyncData)
 		provide('userConfig', props.fetchData.userConfig)
-
+		provide('pages', props.fetchData.pages)
 		const route = useRoute()
 
 		onMounted(() => {
@@ -61,12 +61,12 @@ export default defineComponent({
 									<Transition name='slide-fade' mode='out-in'>
 										<Component></Component>
 									</Transition>
-								)
+								),
 							}}
 						/>
 					</div>
 				</div>
 			</div>
 		)
-	}
+	},
 })
