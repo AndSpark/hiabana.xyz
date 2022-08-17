@@ -90,8 +90,8 @@ export default defineComponent({
 					<img class='absolute w-40 h-40 ml-2 -mt-2 z-10' src={userConfig.avatarBorder[0]}></img>
 					<img class=' w-32 h-32  mx-auto my-2 dark:opacity-80' src={userConfig.avatar[0]}></img>
 
-					<p>Gols</p>
-					<p>
+					<div>Gols</div>
+					<div>
 						<a
 							href='https://ditu.amap.com/search?query=%E5%AE%81%E6%B3%A2'
 							target='blank'
@@ -100,7 +100,7 @@ export default defineComponent({
 							<i class='uil uil-map-marker'></i>
 							Ningbo
 						</a>
-					</p>
+					</div>
 					<div class='flex w-full justify-center'>
 						{socialList.map(v => (
 							<a href={v.href} target='blank' class='mx-2'>
