@@ -2,9 +2,9 @@ import MenuIcon from '@/components/common/Icons/Menu'
 import { useSideBarVisible } from '@/hooks/useSideBar'
 import { defineComponent, ref } from 'vue'
 
+export const isDarkMode = ref(false)
 const DarkMode = defineComponent({
 	setup() {
-		const isDarkMode = ref(false)
 		if (__isBrowser__) {
 			if (
 				localStorage.theme === 'dark' ||
@@ -34,7 +34,7 @@ const DarkMode = defineComponent({
 				onClick={changeMode}
 			></i>
 		)
-	}
+	},
 })
 
 const subTitle = ref()
@@ -74,5 +74,5 @@ export default defineComponent({
 				</h3>
 			</div>
 		)
-	}
+	},
 })

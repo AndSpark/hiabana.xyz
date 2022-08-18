@@ -6,6 +6,7 @@ import { useSideBarVisible } from '@/hooks/useSideBar'
 import { useMask } from '@/hooks/useMask'
 import { useRoute } from 'vue-router'
 import { PaginateResult, PageModel } from '@mx-space/api-client'
+import { isDarkMode } from '../Header'
 export default defineComponent({
 	setup(props, ctx) {
 		const pages = inject<PaginateResult<PageModel>>('pages')!
@@ -87,21 +88,13 @@ export default defineComponent({
 		return () => (
 			<div class=' h-full relative  z-50  ' ref={sideBar}>
 				<div class='text-center block-bg p-2 relative'>
-					<img class='absolute w-40 h-40 ml-2 -mt-2 z-10' src={userConfig.avatarBorder[0]}></img>
-					<img class=' w-32 h-32  mx-auto my-2 dark:opacity-80' src={userConfig.avatar[0]}></img>
+					<img
+						class='w-full mx-auto my-2 dark:opacity-80'
+						src={isDarkMode.value ? userConfig.avatar[1] : userConfig.avatar[0]}
+					></img>
 
 					<div>Gols</div>
-					<div>
-						<a
-							href='https://ditu.amap.com/search?query=%E5%AE%81%E6%B3%A2'
-							target='blank'
-							class='underline-offset-1 underline'
-						>
-							<i class='uil uil-map-marker'></i>
-							Ningbo
-						</a>
-					</div>
-					<div class='flex w-full justify-center'>
+					<div class='flex w-full justify-center mt-2'>
 						{socialList.map(v => (
 							<a href={v.href} target='blank' class='mx-2'>
 								<i class={v.icon}></i>
