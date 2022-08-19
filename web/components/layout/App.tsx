@@ -1,4 +1,4 @@
-import { defineComponent, onMounted, provide, Transition } from 'vue'
+import { computed, defineComponent, onMounted, provide, Transition } from 'vue'
 import MyHeader from './Header/index'
 import Menu from './Menu/index'
 import './main.css'
@@ -14,6 +14,7 @@ export default defineComponent({
 	props: ['fetchData', 'asyncData'],
 	setup(props) {
 		usePlugins()
+		const userConfig = computed(() => props.fetchData.userConfig)
 
 		provide('fetchData', props.fetchData)
 		provide('asyncData', props.asyncData)
@@ -42,7 +43,7 @@ export default defineComponent({
 					autoplay
 					loop
 					muted
-					src={props.fetchData.userConfig?.background?.[0]}
+					src={userConfig.value?.background?.[0]}
 				></video>
 				<MyHeader></MyHeader>
 				<div class='relative max-w-5xl mx-auto  flex flex-col h-full backdrop-blur-sm bg-slate-300 bg-opacity-90 dark:bg-slate-900  dark:bg-opacity-80   duration-500  shadow-slate-300 shadow-2xl'>
