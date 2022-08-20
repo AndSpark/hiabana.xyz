@@ -49,7 +49,6 @@ let webConfig: Record<string, any> = {
 	description: '这是hibana的秘密基地,简单的一个博客。',
 	keyword: 'hibana,火花',
 }
-let configLoaded = false
 let hitokoto: Hitokoto = {
 	id: 5204,
 	uuid: '739cb56b-3e22-4dbe-b018-861acf248b2e',
@@ -70,14 +69,12 @@ let pages: PaginateResult<PageModel> & {
 }
 
 export default async () => {
-	if (configLoaded) {
-		return { userConfig, webConfig, pages }
-	}
 	try {
-		userConfig = await apiClient.snippet.getByReferenceAndName('root', 'userConfig')
-		webConfig = await apiClient.snippet.getByReferenceAndName('root', 'webConfig')
-		pages = await apiClient.page.getList()
-		configLoaded = true
+		if (!__isBrowser__) {
+			userConfig = await apiClient.snippet.getByReferenceAndName('root', 'userConfig')
+			webConfig = await apiClient.snippet.getByReferenceAndName('root', 'webConfig')
+			pages = await apiClient.page.getList()
+		}
 	} catch (error) {}
 
 	return { userConfig, hitokoto, webConfig, pages }

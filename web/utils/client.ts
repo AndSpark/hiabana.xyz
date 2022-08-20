@@ -6,13 +6,15 @@ import { message } from '@andspark/vue-message'
 import { getToken } from './cookie'
 
 export const apiClient = createClient(axiosAdaptor)(API_URL, {
-	controllers: allControllers
+	controllers: allControllers,
 })
 
 export const $axios = axiosAdaptor.default
 
-// 防止服务端返回爬虫是禁止的
-$axios.defaults.headers['User-Agent'] = 'mx-space'
+if (!__isBrowser__) {
+	// 防止服务端返回爬虫是禁止的
+	$axios.defaults.headers['User-Agent'] = 'mx-space'
+}
 
 $axios.defaults.timeout = 10000
 
