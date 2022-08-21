@@ -3,7 +3,7 @@ import { ISSRNestContext } from 'ssr-types'
 import { apiClient } from '@/utils/client'
 import { PER_PAGE } from '@/constants/common'
 import { inject } from 'vue'
-import { PageModel } from '@mx-space/api-client'
+import { CommentModel, PageModel, PaginateResult } from '@mx-space/api-client'
 interface Params {
 	router: RouteLocationNormalizedLoaded
 }
@@ -13,9 +13,13 @@ export default async ({ router }: Params, ctx?: ISSRNestContext) => {
 
 	try {
 		if (router.params.page) {
+			let comments
 			const data = await apiClient.page.getBySlug(router.params.page as string)
 			if (!data) throw new Error('404')
-			return { page: data }
+			if (data.allowComment) {
+				comments = await apiClient.comment.getByRefId(data.id)
+			}
+			return { page: data, comments }
 		}
 	} catch (error) {
 		throw new Error('404')
@@ -23,3 +27,5 @@ export default async ({ router }: Params, ctx?: ISSRNestContext) => {
 }
 
 export const pageData = () => inject<{ page: PageModel }>('fetchData')!.page
+export const commentsData = () =>
+	inject<{ comments?: PaginateResult<CommentModel> }>('fetchData')?.comments

@@ -1,7 +1,10 @@
+import Paginate from '@/components/common/Paginate'
 import { apiClient } from '@/utils/client'
 import { message } from '@andspark/vue-message'
+import { CommentModel, Pager, PaginateResult } from '@mx-space/api-client'
 import { CommentDto } from '@mx-space/api-client/types/dtos/comment'
-import { computed, defineComponent, reactive } from 'vue'
+import { computed, defineComponent, PropType, reactive, ref, watch } from 'vue'
+import Comment from './comment'
 class CommentInputForm implements CommentDto {
 	author: string
 
@@ -25,7 +28,7 @@ const CommentBaseInput = defineComponent({
 			},
 		})
 		return () => (
-			<div class='relative w-full xl:w-52'>
+			<div class='relative w-full lg:flex-1'>
 				<input
 					class='w-full placeholder:indent-8 placeholder:text-xs text-xs h-8 rounded indent-8'
 					placeholder={props.label}
@@ -38,10 +41,20 @@ const CommentBaseInput = defineComponent({
 })
 export default defineComponent({
 	name: 'Comments',
-	props: ['refId'],
+	props: {
+		refId: {
+			type: String,
+			required: true,
+		},
+		comments: {
+			type: Object,
+			required: true,
+		},
+	},
 	setup(props, ctx) {
 		const commentForm = reactive(new CommentInputForm())
-
+		const comments = ref(props.comments.data)
+		const page = ref<Pager>(props.comments.pagination)
 		const postComment = async () => {
 			if (!commentForm.author || !commentForm.text || !commentForm.mail) {
 				return message.error('请将信息填写完成哦')
@@ -49,12 +62,27 @@ export default defineComponent({
 			try {
 				await apiClient.comment.comment(props.refId, commentForm)
 				message.success('送出成功！')
+				await loadComments()
 			} catch (error) {}
 		}
 
+		async function loadComments() {
+			const res = await apiClient.comment.getByRefId(props.refId, { page: page.value.currentPage })
+			comments.value = res.data
+			commentForm.text = ''
+			page.value = res.pagination
+		}
+
+		watch(
+			() => page.value.currentPage,
+			() => {
+				loadComments()
+			}
+		)
+
 		return () => (
-			<div class='relative'>
-				<div class='w-fit '>
+			<div class='relative w-full border-t border-slate-400 pt-4'>
+				<div class='w-full'>
 					<p class='mb-1'>路过的小伙伴,留言在这里！</p>
 					<div class='flex flex-wrap  w-full gap-4'>
 						<CommentBaseInput
@@ -76,13 +104,19 @@ export default defineComponent({
 					<textarea
 						v-model={commentForm.text}
 						placeholder='文明留言哦'
-						class='mt-4 w-full max-w-[170rem] h-40 border-slate-600 resize-none rounded  '
+						class='mt-4 w-full   h-20 border-slate-600 resize-none rounded  '
 					/>
 					<div class='w-full flex justify-end '>
 						<button class='h-btn' onClick={postComment}>
 							送出
 						</button>
 					</div>
+					<div>
+						{comments.value.map((v: CommentModel) => (
+							<Comment comment={v}></Comment>
+						))}
+					</div>
+					<Paginate pager={page.value}></Paginate>
 				</div>
 			</div>
 		)
