@@ -1,6 +1,7 @@
 import { fromNowInDay } from '@/utils/time'
 import { CommentModel } from '@mx-space/api-client'
 import { defineComponent, PropType } from 'vue-demi'
+import { cq } from './cq'
 
 const Comment = defineComponent({
 	name: 'Comment',
@@ -16,7 +17,7 @@ const Comment = defineComponent({
 			<div>
 				<div class='w-full flex gap-4 mb-8'>
 					<div>
-						<img class='rounded-xl w-12' src={'https://picsum.photos/100?' + Math.random()}></img>
+						<img class='rounded-xl w-12' src={cq[Math.floor(Math.random() * 50)]}></img>
 					</div>
 					<div class='flex-1 text-xs'>
 						<div class=' text-red-400 dark:text-yellow-400'>{this.comment.author}</div>
