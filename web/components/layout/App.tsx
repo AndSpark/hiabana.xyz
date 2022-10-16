@@ -1,4 +1,4 @@
-import { computed, defineComponent, onMounted, provide, Transition } from 'vue'
+import { computed, defineComponent, onMounted, provide, ref, Transition } from 'vue'
 import MyHeader from './Header/index'
 import Menu from './Menu/index'
 import './main.css'
@@ -8,6 +8,7 @@ import usePlugins from '@/plugins'
 import { initBg, useNProgress } from '@/utils/init'
 import { useSideBarVisible } from '@/hooks/useSideBar'
 import addPointer from '@/utils/pointer'
+import { useHeight } from '@/hooks/useHeight'
 
 export default defineComponent({
 	name: 'Layout',
@@ -35,8 +36,10 @@ export default defineComponent({
 		const { sideBarVisible } = useSideBarVisible()
 		useNProgress()
 
+		useHeight('root')
+
 		return () => (
-			<div class='relative h-screen bg-black overflow-hidden   '>
+			<div id='root' class='relative bg-black overflow-hidden   '>
 				<video
 					ref={videoBg}
 					class={videoClass.value}
@@ -50,7 +53,7 @@ export default defineComponent({
 					<div class=' relative mt-10 flex-1'>
 						<Menu
 							class={
-								' absolute overflow-auto w-52 sm:left-0  -left-52  flex-shrink-0  duration-500 ' +
+								' absolute overflow-auto w-52 sm:left-0 z-50  -left-52  flex-shrink-0  duration-500 ' +
 								(sideBarVisible.value &&
 									'transform translate-x-52   shadow bg-slate-300 dark:bg-slate-800   ')
 							}

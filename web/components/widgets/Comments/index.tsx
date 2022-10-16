@@ -34,7 +34,7 @@ const CommentBaseInput = defineComponent({
 					placeholder={props.label}
 					v-model={value.value}
 				/>
-				<i class={props.icon + ' iconfont absolute z-50 left-2 top-1'}></i>
+				<i class={props.icon + ' iconfont absolute z-10 left-2 top-1'}></i>
 			</div>
 		)
 	},
@@ -83,7 +83,7 @@ export default defineComponent({
 		return () => (
 			<div class='relative w-full border-t border-slate-400 pt-4'>
 				<div class='w-full'>
-					<p class='mb-1'>路过的小伙伴,留言在这里！</p>
+					<p class='mb-4'>哈喽哈喽，有留言吗？</p>
 					<div class='flex flex-wrap  w-full gap-4'>
 						<CommentBaseInput
 							icon='icon-user'
