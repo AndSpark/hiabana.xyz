@@ -33,6 +33,7 @@
     </body>
   </html>
 </template>
+
 <script>
 export default {
   props: ['ctx', 'fetchData'],

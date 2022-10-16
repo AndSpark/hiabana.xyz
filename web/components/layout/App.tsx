@@ -2,13 +2,13 @@ import { computed, defineComponent, onMounted, provide, ref, Transition } from '
 import MyHeader from './Header/index'
 import Menu from './Menu/index'
 import './main.css'
-import { message } from '@andspark/vue-message'
-import { useRoute } from 'vue-router'
 import usePlugins from '@/plugins'
 import { initBg, useNProgress } from '@/utils/init'
 import { useSideBarVisible } from '@/hooks/useSideBar'
 import addPointer from '@/utils/pointer'
 import { useHeight } from '@/hooks/useHeight'
+import { checkRoute } from '@/utils/checkRoute'
+import { setupPage } from '@/setup'
 
 export default defineComponent({
 	name: 'Layout',
@@ -21,25 +21,17 @@ export default defineComponent({
 		provide('asyncData', props.asyncData)
 		provide('userConfig', props.fetchData.userConfig)
 		provide('pages', props.fetchData.pages)
-		const route = useRoute()
-
-		onMounted(() => {
-			addPointer()
-			if (route.path.match(/^\/error/)) {
-				message.error('出错辣！')
-			} else {
-				message.success('欢迎来到Hibana～')
-			}
-		})
 
 		const { videoBg, videoClass } = initBg()
 		const { sideBarVisible } = useSideBarVisible()
-		useNProgress()
 
+		checkRoute()
+		addPointer()
+		useNProgress()
 		useHeight('root')
 
 		return () => (
-			<div id='root' class='relative bg-black overflow-hidden   '>
+			<div id='root' class='relative h-screen bg-black overflow-hidden   '>
 				<video
 					ref={videoBg}
 					class={videoClass.value}

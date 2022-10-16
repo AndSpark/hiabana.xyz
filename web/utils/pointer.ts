@@ -2,6 +2,7 @@ const pointer1 = `https://andspark.oss-cn-hangzhou.aliyuncs.com/cursor1.png`
 const pointer2 = `https://andspark.oss-cn-hangzhou.aliyuncs.com/cursor2.png`
 
 const addPointer = () => {
+	if (!__isBrowser__) return
 	const styleEl = document.createElement('style')
 	styleEl.innerHTML = style
 	document.body.appendChild(styleEl)
